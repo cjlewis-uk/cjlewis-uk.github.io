@@ -21,15 +21,24 @@
     /* Hero section */
 
 
-hero {
-  background:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url("CJL.jpg") right center / contain no-repeat;
-  background-color: #999;     /* grey bars on the left */
+
+.hero {
   min-height: 65vh;
   padding: 3rem 2rem 4rem;
   color: #fff;
-}
+
+  /* Background layers */
+  background-image:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("CJL.jpg");
+
+  background-repeat: no-repeat, no-repeat;
+
+  /* IMPORTANT: control geometry explicitly */
+  background-size: auto, contain;
+  background-position: left top, right center;
+
+  background-color: #999; /* grey bars */
 
 
     
