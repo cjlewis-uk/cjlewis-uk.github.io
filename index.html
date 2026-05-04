@@ -167,6 +167,7 @@ gallery-item {
 }
 
 .caption {
+  text-align: center;
   font-size: 0.85rem;
   margin-top: 6px;
   color: #555;
@@ -352,19 +353,20 @@ window.onload = function() {
   }
 };
     
-// Auto-generate captions from filenames
-document.querySelectorAll('.gallery-item').forEach(item => {
-  const img = item.querySelector('img');
-  const caption = item.querySelector('.caption');
+// Auto captions (works with simple <img> only)
+document.querySelectorAll('.gallery img').forEach(img => {
+  const caption = document.createElement('div');
 
-  if (img && caption) {
-    let name = img.src.split('/').pop();       // get filename
-    name = name.replace(/\.[^/.]+$/, "");      // remove extension
-    name = name.replace(/[_-]/g, " ");         // underscores → spaces
+  let name = img.src.split('/').pop();
+  name = name.replace(/\.[^/.]+$/, "");  // remove .jpg
+  name = name.replace(/[_-]/g, " ");     // tidy name
 
-    caption.textContent = name;
-  }
+  caption.textContent = name;
+  caption.className = 'caption';
+
+  img.insertAdjacentElement('afterend', caption);
 });
+
   </script>
 
 </body>
