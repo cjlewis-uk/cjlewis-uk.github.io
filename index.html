@@ -195,22 +195,37 @@ and strength retention with minimal decision making.
   </footer>
 
   <script>
-    function openTab(evt, tabName) {
-      let i, content, buttons;
+   
+function openTab(evt, tabName) {
+  let i, content, buttons;
 
-      content = document.getElementsByClassName("tab-content");
-      for (i = 0; i < content.length; i++) {
-        content[i].classList.remove("active");
-      }
+  content = document.getElementsByClassName("tab-content");
+  for (i = 0; i < content.length; i++) {
+    content[i].classList.remove("active");
+  }
 
-      buttons = document.getElementsByClassName("tab-button");
-      for (i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active");
-      }
+  buttons = document.getElementsByClassName("tab-button");
+  for (i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("active");
+  }
 
-      document.getElementById(tabName).classList.add("active");
-      evt.currentTarget.classList.add("active");
-    }
+  document.getElementById(tabName).classList.add("active");
+  evt.currentTarget.classList.add("active");
+
+  // ✅ Save selected tab
+  localStorage.setItem("activeTab", tabName);
+}
+
+// ✅ Restore tab on page load
+window.onload = function() {
+  const savedTab = localStorage.getItem("activeTab");
+
+  if (savedTab) {
+    const button = document.querySelector(`button[onclick*="${savedTab}"]`);
+    if (button) button.click();
+  }
+};
+
   </script>
 
 </body>
