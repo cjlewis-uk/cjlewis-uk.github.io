@@ -17,11 +17,15 @@
       background: #fff;
     }
 
-    /* Hero */
+    /* Hero layout (no image here anymore) */
     .hero {
       min-height: 65vh;
       padding: 3rem 2rem 4rem;
       color: #fff;
+    }
+
+    /* Home-only hero image */
+    .hero-home {
       background:
         linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
         url("CJL.jpg") center / cover no-repeat;
@@ -88,9 +92,9 @@
 
 <body>
 
-  <header class="hero">
-    <h1>Christopher Lewis</h1>
-    <p>Personal notes on allotment gardening, gadgets, electronics, and a few photos.</p>
+  <!-- ✅ Header now clean (no image) -->
+  <header>
+    <h1 style="padding: 1rem 2rem; margin: 0;">Christopher Lewis</h1>
   </header>
 
   <main>
@@ -105,56 +109,57 @@
       <button class="tab-button" onclick="openTab(event, 'family')">Family</button>
     </div>
 
-    <!-- Home -->
-    
+    <!-- ✅ HOME (only place with hero image) -->
+    <div id="home" class="tab-content active">
 
-<div id="home" class="tab-content active">
-  <h2>Welcome</h2>
-  <p>A simple, structured site covering a few key areas:</p>
+      <div class="hero hero-home">
+        <h1>Christopher Lewis</h1>
+        <p>Personal notes on allotment gardening, gadgets, electronics, and a few photos.</p>
+      </div>
 
-  <ul>
-    <li>Diet – E_counter system for fat loss and performance</li>
-    <li>Allotment – growing, composting, and seasonal notes</li>
-    <li>Electronics – projects and builds</li>
-    <li>Gadgets – tools and setups</li>
-    <li>Family – a few photos and personal updates</li>
-  </ul>
-</div>
+      <h2>Welcome</h2>
+      <p>A simple, structured site covering a few key areas:</p>
 
+      <ul>
+        <li>Diet – E_counter system for fat loss and performance</li>
+        <li>Allotment – growing, composting, and seasonal notes</li>
+        <li>Electronics – projects and builds</li>
+        <li>Gadgets – tools and setups</li>
+        <li>Family – a few photos and personal updates</li>
+      </ul>
+    </div>
 
     <!-- Diet -->
     <div id="diet" class="tab-content">
-     
-<h3>E_counter – Calorie Control System</h3>
+      <h3>E_counter – Calorie Control System</h3>
 
-<p>
-A structured daily system using fixed meals and movement to deliver consistent fat loss 
-and strength retention with minimal decision making.
-</p>
+      <p>
+      A structured daily system using fixed meals and movement to deliver consistent fat loss 
+      and strength retention with minimal decision making.
+      </p>
 
-<h4>Daily Structure</h4>
-<ul>
-  <li>75g muesli + milk</li>
-  <li>3 × protein + veg meals</li>
-  <li>Top up: skyr / yoghurt ± fruit</li>
-</ul>
+      <h4>Daily Structure</h4>
+      <ul>
+        <li>75g muesli + milk</li>
+        <li>3 × protein + veg meals</li>
+        <li>Top up: skyr / yoghurt ± fruit</li>
+      </ul>
 
-<h4>Movement</h4>
-<ul>
-  <li>Walk daily</li>
-  <li>Weights (fixed routine)</li>
-  <li>7 minute core</li>
-</ul>
+      <h4>Movement</h4>
+      <ul>
+        <li>Walk daily</li>
+        <li>Weights (fixed routine)</li>
+        <li>7 minute core</li>
+      </ul>
 
-<h4>Targets</h4>
-<ul>
-  <li>1400–1700 kcal</li>
-  <li>≥120g protein</li>
-  <li>≥25g fibre</li>
-</ul>
+      <h4>Targets</h4>
+      <ul>
+        <li>1400–1700 kcal</li>
+        <li>≥120g protein</li>
+        <li>≥25g fibre</li>
+      </ul>
 
-<p><strong>Rule: Execute daily. Adjust weekly
-
+      <p><strong>Rule: Execute daily. Adjust weekly</strong></p>
     </div>
 
     <!-- Allotment -->
@@ -181,7 +186,6 @@ and strength retention with minimal decision making.
       <p>Decorating, repairs, and practical tips.</p>
     </div>
 
-
     <!-- Family -->
     <div id="family" class="tab-content">
       <h3>Family</h3>
@@ -195,7 +199,6 @@ and strength retention with minimal decision making.
   </footer>
 
   <script>
-   
 function openTab(evt, tabName) {
   let i, content, buttons;
 
@@ -212,11 +215,9 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).classList.add("active");
   evt.currentTarget.classList.add("active");
 
-  // ✅ Save selected tab
   localStorage.setItem("activeTab", tabName);
 }
 
-// ✅ Restore tab on page load
 window.onload = function() {
   const savedTab = localStorage.getItem("activeTab");
 
@@ -225,7 +226,6 @@ window.onload = function() {
     if (button) button.click();
   }
 };
-
   </script>
 
 </body>
