@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,10 @@
   <style>
     * { box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -17,14 +22,28 @@
       background: #fff;
     }
 
-    /* Hero layout (no image here anymore) */
+    /* Header */
+    header {
+      border-bottom: 1px solid #ddd;
+      background: #fff;
+    }
+
+    header h1 {
+      margin: 0;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+    }
+
+    /* Hero */
     .hero {
       min-height: 65vh;
       padding: 3rem 2rem 4rem;
       color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
 
-    /* Home-only hero image */
     .hero-home {
       background:
         linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
@@ -32,7 +51,7 @@
     }
 
     .hero h1 {
-      margin: 2.5rem 0 0.25rem;
+      margin: 0 0 0.25rem;
       font-size: 2.4rem;
       font-weight: 600;
     }
@@ -43,6 +62,7 @@
       font-size: 1.05rem;
     }
 
+    /* Layout */
     main {
       max-width: 900px;
       margin: auto;
@@ -75,26 +95,58 @@
       border-bottom: 2px solid black;
     }
 
+    /* Tab fade effect */
     .tab-content {
       display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
       padding: 10px 0;
     }
 
     .tab-content.active {
       display: block;
+      opacity: 1;
     }
 
+    /* Contact form */
+    form {
+      max-width: 500px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+    }
+
+    button[type="submit"] {
+      padding: 10px 15px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Mobile */
     @media (max-width: 600px) {
-      .hero h1 { font-size: 2rem; }
+      .hero {
+        min-height: 45vh;
+        padding: 2rem 1.5rem 2.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ✅ Header now clean (no image) -->
   <header>
-    <h1 style="padding: 1rem 2rem; margin: 0;">Christopher Lewis</h1>
+    <h1>Christopher Lewis</h1>
   </header>
 
   <main>
@@ -107,11 +159,11 @@
       <button class="tab-button" onclick="openTab(event, 'gadgets')">Gadgets</button>
       <button class="tab-button" onclick="openTab(event, 'diy')">DIY</button>
       <button class="tab-button" onclick="openTab(event, 'family')">Family</button>
+      <button class="tab-button" onclick="openTab(event, 'contact')">Contact</button>
     </div>
 
-    <!-- ✅ HOME (only place with hero image) -->
+    <!-- Home -->
     <div id="home" class="tab-content active">
-
       <div class="hero hero-home">
         <h1>Christopher Lewis</h1>
         <p>Personal notes on allotment gardening, gadgets, electronics, and a few photos.</p>
@@ -132,7 +184,6 @@
     <!-- Diet -->
     <div id="diet" class="tab-content">
       <h3>E_counter – Calorie Control System</h3>
-
       <p>
       A structured daily system using fixed meals and movement to deliver consistent fat loss 
       and strength retention with minimal decision making.
@@ -192,6 +243,30 @@
       <p>Some photos and personal updates.</p>
     </div>
 
+    <!-- Contact -->
+    <div id="contact" class="tab-content">
+      <h3>Contact</h3>
+
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>Name</label><br>
+        <input type="text" name="name" required>
+
+        <br><br>
+
+        <label>Email</label><br>
+        <input type="email" name="email" required>
+
+        <br><br>
+
+        <label>Message</label><br>
+        <textarea name="message" rows="5" required></textarea>
+
+        <br><br>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
   </main>
 
   <footer>
@@ -216,6 +291,8 @@ function openTab(evt, tabName) {
   evt.currentTarget.classList.add("active");
 
   localStorage.setItem("activeTab", tabName);
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 window.onload = function() {
