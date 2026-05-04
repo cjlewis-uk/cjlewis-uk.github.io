@@ -344,28 +344,39 @@ function openTab(evt, tabName) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-window.onload = function() {
-  const savedTab = localStorage.getItem("activeTab");
 
+window.onload = function() {
+
+  // ✅ Restore saved tab
+  const savedTab = localStorage.getItem("activeTab");
   if (savedTab) {
     const button = document.querySelector(`button[onclick*="${savedTab}"]`);
     if (button) button.click();
   }
+
+  // ✅ Auto captions + grouping
+  document.querySelectorAll('.gallery img').forEach(img => {
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'gallery-item';
+
+    img.parentNode.insertBefore(wrapper, img);
+    wrapper.appendChild(img);
+
+    const caption = document.createElement('div');
+
+    let name = img.src.split('/').pop();
+    name = name.replace(/\.[^/.]+$/, "");
+    name = name.replace(/[_-]/g, " ");
+
+    caption.textContent = name;
+    caption.className = 'caption';
+
+    wrapper.appendChild(caption);
+  });
+
 };
-    
-// Auto captions (works with simple <img> only)
-document.querySelectorAll('.gallery img').forEach(img => {
-  const caption = document.createElement('div');
 
-  let name = img.src.split('/').pop();
-  name = name.replace(/\.[^/.]+$/, "");  // remove .jpg
-  name = name.replace(/[_-]/g, " ");     // tidy name
-
-  caption.textContent = name;
-  caption.className = 'caption';
-
-  img.insertAdjacentElement('afterend', caption);
-});
 
   </script>
 
