@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -18,14 +17,14 @@
       background: #fff;
     }
 
-    /* Hero section */
-.hero {
-  min-height: 65vh;
-  padding: 3rem 2rem 4rem;
-  color: #fff;
-background:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url("CJL.jpg") center / cover no-repeat;
+    /* Hero */
+    .hero {
+      min-height: 65vh;
+      padding: 3rem 2rem 4rem;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("CJL.jpg") center / cover no-repeat;
     }
 
     .hero h1 {
@@ -40,32 +39,10 @@ background:
       font-size: 1.05rem;
     }
 
-    nav {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 0.15rem;
-    }
-
-    nav a:hover {
-      border-bottom-color: rgba(255,255,255,0.8);
-    }
-
     main {
       max-width: 900px;
       margin: auto;
       padding: 2.5rem 2rem;
-    }
-
-    section {
-      margin-bottom: 2.5rem;
     }
 
     footer {
@@ -76,10 +53,35 @@ background:
       color: #555;
     }
 
+    /* Tabs */
+    .tabs {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .tabs button {
+      background: none;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .tabs button.active {
+      border-bottom: 2px solid black;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 10px 0;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
     @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
+      .hero h1 { font-size: 2rem; }
     }
   </style>
 </head>
@@ -87,103 +89,95 @@ background:
 <body>
 
   <header class="hero">
-    <nav>
-      Allotment</a>
-      Gadgets</a>
-      Electronics</a>
-      Photos</a>
-    </nav>
-
     <h1>Christopher Lewis</h1>
     <p>Personal notes on allotment gardening, gadgets, electronics, and a few photos.</p>
   </header>
 
+  <main>
 
-<main>
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab(event, 'home')">Home</button>
+      <button class="tab-button" onclick="openTab(event, 'diet')">Diet</button>
+      <button class="tab-button" onclick="openTab(event, 'allotment')">Allotment</button>
+      <button class="tab-button" onclick="openTab(event, 'electronics')">Electronics</button>
+      <button class="tab-button" onclick="openTab(event, 'gadgets')">Gadgets</button>
+      <button class="tab-button" onclick="openTab(event, 'family')">Family</button>
+    </div>
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-button active" onclick="openTab(event, 'home')">Home</button>
-    <button class="tab-button" onclick="openTab(event, 'diet')">Diet</button>
-    <button class="tab-button" onclick="openTab(event, 'allotment')">Allotment</button>
-    <button class="tab-button" onclick="openTab(event, 'electronics')">Electronics</button>
-    <button class="tab-button" onclick="openTab(event, 'gadgets')">Gadgets</button>
-    <button class="tab-button" onclick="openTab(event, 'family')">Family</button>
-  </div>
-
-  <!-- Home tab (this is your current content) -->
-  <div id="home" class="tab-content active">
-    <section>
+    <!-- Home -->
+    <div id="home" class="tab-content active">
       <h2>Welcome</h2>
-      <p>Notes, projects, photos, and experiments — just for fun.</p>
-    </section>
-  </div>
+      <p>Personal notes on allotment gardening, gadgets, electronics, and projects.</p>
+    </div>
 
-  <!-- Diet tab -->
-  <div id="diet" class="tab-content">
-    <h3>E_counter – Daily System</h3>
-    <p><strong>Muesli + 3 meals + top up + walk</strong></p>
-    <ul>
-      <li>75g muesli + milk</li>
-      <li>3 × protein + veg meals</li>
-      <li>Top up: skyr / yoghurt ± fruit</li>
-      <li>Walk daily</li>
-      <li>Weights + 7 minute core</li>
-    </ul>
-  </div>
+    <!-- Diet -->
+    <div id="diet" class="tab-content">
+      <h3>E_counter – Daily System</h3>
 
-  <!-- Allotment tab -->
-  <div id="allotment" class="tab-content">
-    <h3>Allotment</h3>
-    <p>Your gardening notes here</p>
-  </div>
+      <p><strong>Muesli + 3 meals + top up + walk</strong></p>
 
-  <!-- Electronics tab -->
-  <div id="electronics" class="tab-content">
-    <h3>Electronics</h3>
-    <p>Your projects here</p>
-  </div>
+      <ul>
+        <li>75g muesli + milk</li>
+        <li>3 × protein + veg meals (~30–40g protein each)</li>
+        <li>Top up: skyr / yoghurt ± fruit</li>
+        <li>Walk daily</li>
+        <li>Weights + 7 minute core</li>
+      </ul>
 
-   <!-- Gadgets tab -->
-  <div id="gadgets" class="tab-content">
-    <h3>Gadgets</h3>
-    <p>Your projects here</p>
-  </div>
+      <p>
+        <strong>Targets:</strong> 1400–1700 kcal, ≥120g protein, ≥25g fibre<br>
+        <strong>Rule:</strong> Execute daily. Adjust weekly.
+      </p>
+    </div>
 
-   <!-- Family tab -->
-  <div id="family" class="tab-content">
-    <h3>Family</h3>
-    <p>Your stuff here</p>
-  </div>
+    <!-- Allotment -->
+    <div id="allotment" class="tab-content">
+      <h3>Allotment</h3>
+      <p>Growing plans, composting, and seasonal notes.</p>
+    </div>
 
-</main>
+    <!-- Electronics -->
+    <div id="electronics" class="tab-content">
+      <h3>Electronics</h3>
+      <p>Projects, PCB design, Arduino development, and experiments.</p>
+    </div>
 
+    <!-- Gadgets -->
+    <div id="gadgets" class="tab-content">
+      <h3>Gadgets</h3>
+      <p>Tools, setups, and useful tech notes.</p>
+    </div>
+
+    <!-- Family -->
+    <div id="family" class="tab-content">
+      <h3>Family</h3>
+      <p>General notes and personal updates.</p>
+    </div>
+
+  </main>
 
   <footer>
     <p>© Christopher Lewis</p>
   </footer>
 
+  <script>
+    function openTab(evt, tabName) {
+      let i, content, buttons;
 
-<script>
-function openTab(evt, tabName) {
-  let i, content, buttons;
+      content = document.getElementsByClassName("tab-content");
+      for (i = 0; i < content.length; i++) {
+        content[i].classList.remove("active");
+      }
 
-  content = document.getElementsByClassName("tab-content");
-  for (i = 0; i < content.length; i++) {
-    content[i].classList.remove("active");
-  }
+      buttons = document.getElementsByClassName("tab-button");
+      for (i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+      }
 
-  buttons = document.getElementsByClassName("tab-button");
-  for (i = 0; i < buttons.length; i++) {
-    buttons[i].classList.remove("active");
-  }
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
 
-  document.getElementById(tabName).classList.add("active");
-  evt.currentTarget.classList.add("active");
-}
-</script>
-
-  
 </body>
 </html>
-
