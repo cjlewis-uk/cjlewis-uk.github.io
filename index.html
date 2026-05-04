@@ -162,6 +162,16 @@
   transform: scale(1.05);
 }
 
+gallery-item {
+  text-align: center;
+}
+
+.caption {
+  font-size: 0.85rem;
+  margin-top: 6px;
+  color: #555;
+}
+
   </style>
 
   
@@ -341,6 +351,20 @@ window.onload = function() {
     if (button) button.click();
   }
 };
+    
+// Auto-generate captions from filenames
+document.querySelectorAll('.gallery-item').forEach(item => {
+  const img = item.querySelector('img');
+  const caption = item.querySelector('.caption');
+
+  if (img && caption) {
+    let name = img.src.split('/').pop();       // get filename
+    name = name.replace(/\.[^/.]+$/, "");      // remove extension
+    name = name.replace(/[_-]/g, " ");         // underscores → spaces
+
+    caption.textContent = name;
+  }
+});
   </script>
 
 </body>
