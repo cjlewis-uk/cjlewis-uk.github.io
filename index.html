@@ -98,17 +98,78 @@ background:
     <p>Personal notes on allotment gardening, gadgets, electronics, and a few photos.</p>
   </header>
 
-  <main>
+
+<main>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-button active" onclick="openTab(event, 'home')">Home</button>
+    <button class="tab-button" onclick="openTab(event, 'diet')">Diet</button>
+    <button class="tab-button" onclick="openTab(event, 'allotment')">Allotment</button>
+    <button class="tab-button" onclick="openTab(event, 'electronics')">Electronics</button>
+  </div>
+
+  <!-- Home tab (this is your current content) -->
+  <div id="home" class="tab-content active">
     <section>
       <h2>Welcome</h2>
       <p>Notes, projects, photos, and experiments — just for fun.</p>
     </section>
-  </main>
+  </div>
+
+  <!-- Diet tab -->
+  <div id="diet" class="tab-content">
+    <h3>E_counter – Daily System</h3>
+    <p><strong>Muesli + 3 meals + top up + walk</strong></p>
+    <ul>
+      <li>75g muesli + milk</li>
+      <li>3 × protein + veg meals</li>
+      <li>Top up: skyr / yoghurt ± fruit</li>
+      <li>Walk daily</li>
+      <li>Weights + 7 minute core</li>
+    </ul>
+  </div>
+
+  <!-- Allotment tab -->
+  <div id="allotment" class="tab-content">
+    <h3>Allotment</h3>
+    <p>Your gardening notes here</p>
+  </div>
+
+  <!-- Electronics tab -->
+  <div id="electronics" class="tab-content">
+    <h3>Electronics</h3>
+    <p>Your projects here</p>
+  </div>
+
+</main>
+
 
   <footer>
     <p>© Christopher Lewis</p>
   </footer>
 
+
+<script>
+function openTab(evt, tabName) {
+  let i, content, buttons;
+
+  content = document.getElementsByClassName("tab-content");
+  for (i = 0; i < content.length; i++) {
+    content[i].classList.remove("active");
+  }
+
+  buttons = document.getElementsByClassName("tab-button");
+  for (i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("active");
+  }
+
+  document.getElementById(tabName).classList.add("active");
+  evt.currentTarget.classList.add("active");
+}
+</script>
+
+  
 </body>
 </html>
 
